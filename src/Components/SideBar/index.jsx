@@ -1,3 +1,4 @@
+import Avatar from '../Avatar/Avatar'
 import style from './SideBar.module.css'
 
 
@@ -8,7 +9,7 @@ function SideBar () {
 
             <div className={style.profile}>
               
-                <img className={style.avatar} src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXZhdGFyZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=100&q=60" alt="" />
+                <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXZhdGFyZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=100&q=60" alt="" />
 
                 <strong> Nome Sobrenome </strong>
                 <span>Cargo</span>
