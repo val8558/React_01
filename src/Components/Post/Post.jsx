@@ -1,25 +1,41 @@
-import Avatar from '../Avatar/Avatar'
-import Cmt from './Cmt'
+import {formatDistanceToNow} from 'date-fns';
+import Avatar from '../Avatar/Avatar';
+import Cmt from './Cmt';
 import style from './Post.module.css'
 
 
 
 
-function Post() {
+function Post({author, publishedAt}) {
+
+    const publishedDateFormat = new Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        hour: '2-digit',
+        minute: "2-digit"
+    }).format(publishedAt)   
+    // forma nativa de lidar com datas no js. nesse formato usamos o intl para buscar as datas e aplicamos as propriendades 
+
+    // const publishedDateRelative = formatDistanceToNow(plublishedAt, {
+    //     addSuffix: true
+    // })
+
     return (
         <article className={style.post}>
             <header>
                 <div className={style.author}>
-                    <Avatar hasBorder src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXZhdGFyZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=100&q=60"/>
+                    <Avatar hasBorder src={author.avatarUrl}/>
 
                     <div className={style.authorInfo}>
-                        <strong>Laura Rizzi</strong>
-                        <span>psicologa</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                     </div>
                 </div>
 
 
-                <time title='Publicado em 17/07' dateTime='2023-17-07 17:34:22' >Publicado há 1 hora</time>
+                <time title='' dateTime=''>
+                {publishedDateFormat}
+                </time>
             </header>
 
             <div className={style.content}>
