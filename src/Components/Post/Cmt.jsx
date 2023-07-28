@@ -2,7 +2,7 @@ import style from './Comment.module.css'
 import deleteBin from  '../../assets/icon.svg'
 import Avatar from '../Avatar/Avatar'
 
-function Cmt() {
+function Cmt(pros) {
     return (
         <>
             <div className={style.comment}>
@@ -22,7 +22,7 @@ function Cmt() {
                             <button title='Deletar Comentário'> Deletar
                             </button>
                         </header>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quasi voluptatibus repudiandae consequatur porro ex, iure repellat? Nesciunt optio quidem maxime ipsam sed, veritatis laborum, nihil consequuntur nam ea obcaecati?</p>
+                        <p>{pros.content}</p>
                     </div>
                     <footer>
                         <button>
