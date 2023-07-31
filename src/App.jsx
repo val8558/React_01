@@ -69,12 +69,10 @@ function App() {
       {post.map(post => {
         return (
         <Post 
+          key={post.id} //serve para mostrar a informação unica de cada post, serve para identificar. 
           author={post.author}
           content ={post.content}
           Date ={post.publishedAt}
-
-
-        
         />)
       })}
     </main>
@@ -91,3 +89,8 @@ export default App
 
 // export default App -> forma padrão de exportar (aceita qualquer nome)
 // export function - > named export ajuda a deixar o código mais seguro, pois não permite que na importação use qualquer nome deve sempre usar chaves na importação
+
+
+// keys no React devem ser únicas, pois existem três(quando o estado muda, quando a propriedade altera, quando um componente pai renderiza novamente) principais momentos em que um componente é renderizado novamente (o conteudo do componente é recalculada) no React, essa renderizações fazem com que o carregamente seja lento, e a key determina quais são os objetos que estão em tela e quais os novos evitando assim que o Reat recarregue itens que já estavam em tela. 
+
+// Por que não pode usar o indice do array como key? Não usamos pois não é possível alterar um indice do array, mesmo que trocarmos a posição dos itens dentro array o que pode gerar uma confusão para o react

@@ -2,11 +2,17 @@ import style from './Comment.module.css'
 import deleteBin from  '../../assets/icon.svg'
 import Avatar from '../Avatar/Avatar'
 
-function Cmt(pros) {
+function Cmt({content, deleteComment}) {
+
+    function handleDeleteComment() {
+          return (deleteComment(content ))
+    }
+
     return (
         <>
             <div className={style.comment}>
                 <Avatar hasBorder={false}  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXZhdGFyZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=100&q=60" alt="" />
+
 
 
                 <div className={style.commentBox}>
@@ -19,10 +25,10 @@ function Cmt(pros) {
 
                             </div>
                         
-                            <button title='Deletar Comentário'> Deletar
+                            <button onClick={handleDeleteComment} title='Deletar Comentário'> Deletar
                             </button>
                         </header>
-                        <p>{pros.content}</p>
+                        <p>{content}</p>
                     </div>
                     <footer>
                         <button>

@@ -40,6 +40,15 @@ function Post({ author, publishedAt, content }) {
         setNewCommentText (event.target.value)
     }
 
+    function deleteComment (commentToDelete) {
+        const commentsWithoutDeleteCommente = comments.filter(comment => {
+            return comment !== commentToDelete;
+        }) 
+        setComment(commentsWithoutDeleteCommente);
+    }
+// o metodo .filter que percorre os itens do array e filtra com base na propriedade aplicada
+
+// imutabilidade -> nós nunca alteramos uma variavel na memoria da aplicação, ao inves disso criamos um novo espaço na memória, ou seja, quando usamos a função set do hook state não estamos atualizando o estado e criando um novo espaço. Isso acontece para que a aplicação seja mais performartico, já que ao criar um novo valor o React é mais rapido para ver as alteraçãoes e aplicar
     return (
         <article className={style.post}>
             <header>
@@ -62,13 +71,13 @@ function Post({ author, publishedAt, content }) {
 
                 {content.map(line => {
                     if (line.type === 'paragraph') {
-                        return <p>{line.content}</p>
+                        return <p key={content.type}>{line.content}</p>
                     }
                     else if (line.type === 'link') {
-                        return <p><a href="">{line.content}</a></p>
+                        return <p key={line.content}><a href="">{line.content}</a></p>
                     }
                 })}
-
+{/* no caso acima a key é colocada em ambos os objetos que poderam aparecer na tela, sendo que é sempre apresentada no primeiro elemento em tela */}
             </div>
 
             <form onSubmit={CreateNewComment} className={style.commentForm}>
@@ -82,7 +91,7 @@ function Post({ author, publishedAt, content }) {
 
             <div className={style.commentList}>
                 {comments.map(comment => {
-                    return <Cmt content={comment} />
+                    return <Cmt key={comment} content={comment} deleteComment={deleteComment}/>
                 })}
 
             </div>
