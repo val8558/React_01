@@ -6,6 +6,7 @@ function Cmt({content, deleteComment}) {
 
     function handleDeleteComment() {
           return (deleteComment(content ))
+          console.log("teste")
     }
 
     return (
