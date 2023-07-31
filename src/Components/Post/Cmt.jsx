@@ -1,12 +1,18 @@
 import style from './Comment.module.css'
 import deleteBin from  '../../assets/icon.svg'
 import Avatar from '../Avatar/Avatar'
+import { useState } from 'react'
 
 function Cmt({content, deleteComment}) {
+
+    const [likeCount, setLikeCount] = useState (0) 
 
     function handleDeleteComment() {
           return (deleteComment(content ))
           console.log("teste")
+    }
+    function handleLikeComment (){
+        setLikeCount(likeCount + 1)
     }
 
     return (
@@ -32,8 +38,8 @@ function Cmt({content, deleteComment}) {
                         <p>{content}</p>
                     </div>
                     <footer>
-                        <button>
-                            Aplaudir <span>20</span>
+                        <button onClick={handleLikeComment}>
+                            Aplaudir <span>{likeCount}</span>
                         </button>
 
                     </footer>
@@ -44,3 +50,5 @@ function Cmt({content, deleteComment}) {
 }
 
 export default Cmt 
+
+//

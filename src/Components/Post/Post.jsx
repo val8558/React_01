@@ -37,7 +37,12 @@ function Post({ author, publishedAt, content }) {
     // o ... serve para ler o conteudo do array, enquanto o comments.lenght + 1 serve para adicionar sempre um comentário na lista, ou seja ele le a lista determina quantos tem e adiciona mais um
 
     function newCommentChange (){
+        event.target.setCustomValidity('')
         setNewCommentText (event.target.value)
+    }
+
+    function handleNewCommentInvalid (){
+        event.target.setCustomValidity("Esse campo é obrigatório")
     }
 
     function deleteComment (commentToDelete) {
@@ -49,7 +54,10 @@ function Post({ author, publishedAt, content }) {
 // o metodo .filter que percorre os itens do array e filtra com base na propriedade aplicada
 
 // imutabilidade -> nós nunca alteramos uma variavel na memoria da aplicação, ao inves disso criamos um novo espaço na memória, ou seja, quando usamos a função set do hook state não estamos atualizando o estado e criando um novo espaço. Isso acontece para que a aplicação seja mais performartico, já que ao criar um novo valor o React é mais rapido para ver as alteraçãoes e aplicar
-    return (
+
+    const isNewCommentEmpty = NewCommentText.length === 0
+
+return (
         <article className={style.post}>
             <header>
                 <div className={style.author}>
@@ -82,9 +90,18 @@ function Post({ author, publishedAt, content }) {
 
             <form onSubmit={CreateNewComment} className={style.commentForm}>
                 <strong>Deixe seu Feedback</strong>
-                <textarea name='comment' placeholder='Deixe um comentário'  onChange={newCommentChange} value={NewCommentText}/>
+              
+                <textarea 
+                    required
+                    onInvalid={handleNewCommentInvalid}
+                    name='comment' 
+                    placeholder='Deixe um comentário'  
+                    onChange={newCommentChange} 
+                    value={NewCommentText}/>
                 <footer>
-                    <button type='submit'>Publicar</button>
+                    <button type='submit' disabled={isNewCommentEmpty}>
+                        Publicar
+                    </button>
                 </footer>
 
             </form>
