@@ -1,5 +1,4 @@
 import style from './Comment.module.css'
-import deleteBin from  '../../assets/icon.svg'
 import Avatar from '../Avatar/Avatar'
 import { useState } from 'react'
 
@@ -9,8 +8,8 @@ function Cmt({content, deleteComment}) {
 
     function handleDeleteComment() {
           return (deleteComment(content ))
-          console.log("teste")
     }
+
     function handleLikeComment (){
         setLikeCount(likeCount + 1)
     }
@@ -51,4 +50,3 @@ function Cmt({content, deleteComment}) {
 
 export default Cmt 
 
-//
